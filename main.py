@@ -8,40 +8,40 @@ import random
 pygame.init()
 from constans1 import *
 
-#הגדרת התמונה
-img = pygame.image.load("images/flappy-bird-nitzanim.png")
-img = pygame.transform.scale(img, (width_img, height_img))
+# הגדרת התמונה
+bird_img = pygame.image.load("images/flappy-bird-nitzanim.png")
+bird_img = pygame.transform.scale(bird_img, (width_img, height_img))
 
-#הגדרת מסך
+# הגדרת מסך
 screen_size = (WINDOW_WIDTH, WINDOW_HEIGHT)
 screen = pygame.display.set_mode(screen_size)
 
 obstacle_list = []
 for i in range(3, 100):
-    upper = Obstacle(500*i, 0, 50, random.randint(50, 100), True)
-    lower = Obstacle(500 * i, random.randint(400, 500), 50, 500, False)
+    upper_pos = random.randint(50, 400)
+    upper = Obstacle(500 * i, 0, 50, upper_pos, True)
+    lower = Obstacle(500 * i, upper_pos+200, 50, 500, False)
     obstacle_list.append(upper)
     obstacle_list.append(lower)
 
-
-#רשימת צינורות
+# רשימת צינורות
 # obstacle_list = [Obstacle(1000, 0, 50, 200), Obstacle(1500, 0, 50, 100),
 #                  Obstacle(1000, 400, 50, 200), Obstacle(1500, 400, 50, 500),
 #                  Obstacle(2000, 400, 50, 500), Obstacle(2000, 400, 50, 100)
 #                  ]
 
-#יצירת משתנה של ניקוד
+# יצירת משתנה של ניקוד
 player_score = Score()
 time_delay = 10
 
-#משתנים בוליאניים של המשחק
+# משתנים בוליאניים של המשחק
 isFalling = True
 isPlaying = True
 
-#לולאת המשחק
+# לולאת המשחק
 while isPlaying:
     isFalling = True
-    #בדיקת לחיצות על מקשים
+    # בדיקת לחיצות על מקשים
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             isPlaying = False
@@ -55,7 +55,7 @@ while isPlaying:
 
     screen.fill((0, 0, 0))
 
-#יצירת מונה הניקוד על המסך
+    # יצירת מונה הניקוד על המסך
     font = pygame.font.SysFont('Aharoni', 30)
     text = font.render(str(player_score.get_score()), True, color)
     screen.blit(text, [player_score.x_pos_score, player_score.y_pos_score])
@@ -84,7 +84,7 @@ while isPlaying:
                 obstacle.given_score = True
                 player_score.increase_score()
 
-    screen.blit(img, (x_pos_img, y_pos_img))
+    screen.blit(bird_img, (x_pos_img, y_pos_img))
     pygame.display.update()
     pygame.time.delay(time_delay)
 
