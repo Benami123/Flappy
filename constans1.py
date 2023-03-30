@@ -1,7 +1,12 @@
+import pygame
 # screen
 WINDOW_WIDTH = 900
 WINDOW_HEIGHT = 500
 color = (255, 255, 255)
+
+background = pygame.image.load("images/bacground game.jpg")
+
+
 
 # img settings
 x_pos_img = 450

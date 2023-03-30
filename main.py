@@ -18,7 +18,7 @@ screen = pygame.display.set_mode(screen_size)
 
 obstacle_list = []
 for i in range(3, 100):
-    upper_pos = random.randint(50, 400)
+    upper_pos = random.randint(50, 250)
     upper = Obstacle(500 * i, 0, 50, upper_pos, True)
     lower = Obstacle(500 * i, upper_pos+200, 50, 500, False)
     obstacle_list.append(upper)
@@ -40,6 +40,7 @@ isPlaying = True
 
 # לולאת המשחק
 while isPlaying:
+
     isFalling = True
     # בדיקת לחיצות על מקשים
     for event in pygame.event.get():
@@ -53,7 +54,7 @@ while isPlaying:
                 y_pos_img -= 70
                 isFalling = False
 
-    screen.fill((0, 0, 0))
+    screen.blit(background, (0, 0))
 
     # יצירת מונה הניקוד על המסך
     font = pygame.font.SysFont('Aharoni', 30)
@@ -85,6 +86,7 @@ while isPlaying:
                 player_score.increase_score()
 
     screen.blit(bird_img, (x_pos_img, y_pos_img))
+
     pygame.display.update()
     pygame.time.delay(time_delay)
 

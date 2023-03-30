@@ -14,10 +14,10 @@ class Obstacle:
             self.given_score = True
         else:
             self.given_score = False
-        down_obstacle_img = pygame.image.load("images/pipe-down.png")
+        down_obstacle_img = pygame.image.load("images/pipe-down-fixedddd.png")
         down_obstacle_img = pygame.transform.scale(down_obstacle_img, (self.width, self.height))
         self.down_obstacle_img = down_obstacle_img
-        upper_obstacle_img = pygame.image.load("images/pipe-up.png")
+        upper_obstacle_img = pygame.image.load("images/pipe-up-fixedddd.png")
         upper_obstacle_img = pygame.transform.scale(upper_obstacle_img,
                                               (self.width, self.height))
         self.upper_obstacle_img = upper_obstacle_img
