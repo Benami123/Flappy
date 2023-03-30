@@ -2,13 +2,19 @@ import pygame
 
 
 class Obstacle:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, isupper):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.color = (255, 255, 255)
         self.init_x = x
+        self.upper = isupper
+        if not isupper:
+            self.given_score = True
+        else:
+            self.given_score = False
+
 
     def move_left(self):
         self.x -= 5
@@ -23,3 +29,4 @@ class Obstacle:
 
     def reset_x(self):
         self.x = self.init_x
+        self.given_score = False

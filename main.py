@@ -3,6 +3,7 @@ import obstacle
 from obstacle import Obstacle
 
 from score import Score
+import random
 
 pygame.init()
 from constans1 import *
@@ -15,11 +16,19 @@ img = pygame.transform.scale(img, (width_img, height_img))
 screen_size = (WINDOW_WIDTH, WINDOW_HEIGHT)
 screen = pygame.display.set_mode(screen_size)
 
+obstacle_list = []
+for i in range(3, 100):
+    upper = Obstacle(500*i, 0, 50, random.randint(50, 100), True)
+    lower = Obstacle(500 * i, random.randint(400, 500), 50, 500, False)
+    obstacle_list.append(upper)
+    obstacle_list.append(lower)
+
+
 #רשימת צינורות
-obstacle_list = [Obstacle(1000, 0, 50, 200), Obstacle(1500, 0, 50, 100),
-                 Obstacle(1000, 400, 50, 200), Obstacle(1500, 400, 50, 500),
-                 Obstacle(2000, 400, 50, 500), Obstacle(2000, 400, 50, 100)
-                 ]
+# obstacle_list = [Obstacle(1000, 0, 50, 200), Obstacle(1500, 0, 50, 100),
+#                  Obstacle(1000, 400, 50, 200), Obstacle(1500, 400, 50, 500),
+#                  Obstacle(2000, 400, 50, 500), Obstacle(2000, 400, 50, 100)
+#                  ]
 
 #יצירת משתנה של ניקוד
 player_score = Score()
@@ -60,18 +69,21 @@ while isPlaying:
     if x_pos_img == WINDOW_WIDTH:
         isPlaying = False
 
-    if player_score.get_score() % 10 == 1:
-        time_delay = int(time_delay * 0.9)
+    # if player_score.get_score() % 10 == 1:
+    #     time_delay = int(time_delay * 0.9)
 
     for obstacle in obstacle_list:
         obstacle.move_left()
         obstacle.draw(screen)
         if pygame.Rect.colliderect(bird_object, obstacle.get_rect()):
             isPlaying = False
-        if obstacle.x <= 0:
-            obstacle.reset_x()
-        if x_pos_img == obstacle.x + 50:
-            player_score.increase_score()
+        # if obstacle.x <= 0:
+        #     obstacle.reset_x()
+        if x_pos_img > obstacle.x + 50:
+            if not obstacle.given_score:
+                print("obs given score")
+                obstacle.given_score = True
+                player_score.increase_score()
 
     screen.blit(img, (x_pos_img, y_pos_img))
     pygame.display.update()

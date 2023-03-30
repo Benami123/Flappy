@@ -12,7 +12,7 @@ class Score:
         self.color = (255, 255, 255)
 
     def increase_score(self):
-        self.score +=1
+        self.score += 1
 
     def get_score(self):
         return self.score
