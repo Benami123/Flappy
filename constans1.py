@@ -28,3 +28,6 @@ x_pos_square2 = 700
 y_pos_square2 = 550
 
 width_square2 = 30
+
+
+
