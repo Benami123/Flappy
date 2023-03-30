@@ -81,7 +81,6 @@ while isPlaying:
         #     obstacle.reset_x()
         if x_pos_img > obstacle.x + 50:
             if not obstacle.given_score:
-                print("obs given score")
                 obstacle.given_score = True
                 player_score.increase_score()
 
