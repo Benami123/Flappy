@@ -37,6 +37,22 @@ time_delay = 10
 # משתנים בוליאניים של המשחק
 isFalling = True
 isPlaying = True
+def end_screen():
+    pygame.init()
+    screen_size = (WINDOW_WIDTH, WINDOW_HEIGHT)
+    screen = pygame.display.set_mode(screen_size)
+    bird_img = pygame.image.load("images/flappy-bird-nitzanim.png")
+    bird_img = pygame.transform.scale(bird_img, (width_img, height_img))
+    screen.blit(bird_img, (x_pos_img, y_pos_img))
+    isPlaying = True
+    while isPlaying:
+        # בדיקת לחיצות על מקשים
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                isPlaying = False
+    pygame.quit()
+
+
 
 # לולאת המשחק
 while isPlaying:
@@ -67,8 +83,11 @@ while isPlaying:
                               height_img)
     if y_pos_img == WINDOW_HEIGHT:
         isPlaying = False
+
+
     if x_pos_img == WINDOW_WIDTH:
         isPlaying = False
+
 
     # if player_score.get_score() % 10 == 1:
     #     time_delay = int(time_delay * 0.9)
@@ -91,3 +110,4 @@ while isPlaying:
     pygame.time.delay(time_delay)
 
 pygame.quit()
+end_screen()
